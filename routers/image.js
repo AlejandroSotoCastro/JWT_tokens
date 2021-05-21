@@ -45,7 +45,7 @@ imageRouter.get(
   "/",
   /*authMiddleware,*/ async (req, res, next) => {
     try {
-      const limit = req.query.limit || 25;
+      const limit = Math.min(req.query.limit || 25, 500);
       const offset = req.query.offset || 0;
       const allImages = await Images.findAndCountAll({ limit, offset });
       // res.send({allImages} );
